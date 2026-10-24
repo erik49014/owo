@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mylo.store | El Espacio de los Pibes</title>
+    <style>
+        /* Diseño Fluido/Liquid y Moderno */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0c20, #15102a);
+            color: #fff;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .header-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            color: #00ffcc;
+            font-size: 2.8rem;
+            margin: 0;
+            text-shadow: 0 0 20px rgba(0, 255, 204, 0.4);
+        }
+
+        .subtitle {
+            color: #8a85a5;
+            font-size: 1.1rem;
+            margin-top: 10px;
+        }
+
+        /* Contenedor Líquido/Adaptable para los Perfiles */
+        .grid-amigos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            width: 100%;
+            max-width: 1000px;
+            margin-top: 20px;
+        }
+
+        /* Tarjetas de Perfil con Animación */
+        .card-amigo {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            backdrop-filter: blur(12px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-amigo::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #ff007f, #00ffcc);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .card-amigo:hover {
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(0, 255, 204, 0.3);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+        }
+
+        .card-amigo:hover::before {
+            opacity: 1;
+        }
+
+        .avatar {
+            width: 85px;
+            height: 85px;
+            background: #251f47;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 15px auto;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nombre {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #fff;
+            margin: 5px 0;
+        }
+
+        .rol {
+            font-size: 0.9rem;
+            color: #00ffcc;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .frase {
+            font-size: 0.95rem;
+            color: #b3aed2;
+            font-style: italic;
+            line-height: 1.5;
+        }
+
+        /* Botón de Interacción Global */
+        .btn-accion {
+            background: linear-gradient(90deg, #ff007f, #ff0055);
+            color: white;
+            border: none;
+            padding: 14px 35px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(255, 0, 127, 0.4);
+            margin-bottom: 30px;
+        }
+
+        .btn-accion:hover {
+            transform: scale(1.05) rotate(-1deg);
+            box-shadow: 0 8px 25px rgba(255, 0, 127, 0.6);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header-section">
+        <h1>mylo.store ⚡</h1>
+        <p class="subtitle">El búnker digital privado de nuestra Crew</p>
+    </div>
+
+    <!-- Botón divertido interactivo -->
+    <button class="btn-accion" onclick="destacarDestino()">¿Quién paga la próxima juntada?</button>
+
+    <!-- Zona Líquida de Tarjetas -->
+    <div class="grid-amigos">
+        
+        <!-- Amigo 1 -->
+        <div class="card-amigo" id="perfil-0">
+            <div class="avatar">👑</div>
+            <div class="nombre">eri
+            </div>
+            <div class="rol">Fundadoddddr / Dev</div>
+            <div class="frase">"Metí este servidor en la nube con puro código personalizado."</div>
+        </div>
+
+        <!-- Amigo 2 -->
+        <div class="card-amigo" id="perfil-1">
+            <div class="avatar">🎮</div>
+            <div class="nombre">Amigo Uno</div>
+            <div class="rol">Rey del Vicio</div>
+            <div class="frase">"Dice que se va a dormir temprano pero se queda jugando hasta las 4 AM."</div>
+        </div>
+
+        <!-- Amigo 3 -->
+        <div class="card-amigo" id="perfil-2">
+            <div class="avatar">🍕</div>
+            <div class="nombre">Amigo Dos</div>
+            <div class="rol">Organizador Serial</div>
+            <div class="frase">"Si no manda un mensaje para armar planes el viernes, le da ansiedad."</div>
+        </div>
+
+    </div>
+
+    <script>
+        function destacarDestino() {
+            // Quitamos efectos previos
+            document.querySelectorAll('.card-amigo').forEach(card => {
+                card.style.borderColor = 'rgba(255, 255, 255, 0.08)';
+                card.style.boxShadow = 'none';
+            });
+
+            // Elegimos uno al azar de las 3 tarjetas (0, 1 o 2)
+            const elegido = Math.floor(Math.random() * 3);
+            const tarjetaElegida = document.getElementById(`perfil-${elegido}`);
+            
+            // Le aplicamos un efecto visual loco en tiempo real
+            tarjetaElegida.style.borderColor = '#ff007f';
+            tarjetaElegida.style.boxShadow = '0 0 30px rgba(255, 0, 127, 0.6)';
+            
+            // Alerta divertida en pantalla
+            setTimeout(() => {
+                alert(`¡Le tocó a ${tarjetaElegida.querySelector('.nombre').innerText}! 🍕 Te toca pagar.`);
+            }, 200);
+        }
+    </script>
+</body>
+</html>
